@@ -2,11 +2,18 @@ package com.willfp.modelenginebridge
 
 import org.bukkit.Bukkit
 import org.bukkit.entity.Entity
+import java.util.UUID
 
 interface ModelEngineBridge {
     fun createActiveModel(id: String): BridgedActiveModel?
 
     fun createModeledEntity(entity: Entity): BridgedModeledEntity
+
+    fun getModeledEntity(entity: Entity): BridgedModeledEntity? {
+        return getModeledEntity(entity.uniqueId)
+    }
+
+    fun getModeledEntity(uuid: UUID): BridgedModeledEntity?
 
     companion object {
         val instance: ModelEngineBridge = createInstance()

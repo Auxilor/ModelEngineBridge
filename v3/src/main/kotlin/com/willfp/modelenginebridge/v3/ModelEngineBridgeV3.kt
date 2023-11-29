@@ -7,6 +7,7 @@ import com.willfp.modelenginebridge.ModelEngineBridge
 import com.willfp.modelenginebridge.v3.impl.V3ActiveModel
 import com.willfp.modelenginebridge.v3.impl.V3ModeledEntity
 import org.bukkit.entity.Entity
+import java.util.UUID
 
 class ModelEngineBridgeV3 : ModelEngineBridge {
     override fun createActiveModel(id: String): BridgedActiveModel? {
@@ -17,5 +18,11 @@ class ModelEngineBridgeV3 : ModelEngineBridge {
 
     override fun createModeledEntity(entity: Entity): BridgedModeledEntity {
         return V3ModeledEntity(ModelEngineAPI.createModeledEntity(entity))
+    }
+
+    override fun getModeledEntity(uuid: UUID): BridgedModeledEntity? {
+        return ModelEngineAPI.getModeledEntity(uuid)?.let {
+            V3ModeledEntity(it)
+        }
     }
 }
