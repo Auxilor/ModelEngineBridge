@@ -13,6 +13,9 @@ class V4ModeledEntity(
             handle.isBaseEntityVisible = value
         }
 
+    override val models: Map<String, BridgedActiveModel>
+        get() = handle.models.mapValues { V4ActiveModel(it.key, it.value) }
+
     override fun addModel(model: BridgedActiveModel) {
         model as V4ActiveModel
 

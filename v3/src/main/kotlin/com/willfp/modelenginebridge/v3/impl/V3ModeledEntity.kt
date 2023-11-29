@@ -13,6 +13,9 @@ class V3ModeledEntity(
             handle.isBaseEntityVisible = value
         }
 
+    override val models: Map<String, BridgedActiveModel>
+        get() = handle.models.mapValues { V3ActiveModel(it.key, it.value) }
+
     override fun addModel(model: BridgedActiveModel) {
         model as V3ActiveModel
 
