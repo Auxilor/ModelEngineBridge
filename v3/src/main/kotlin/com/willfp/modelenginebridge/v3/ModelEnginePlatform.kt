@@ -1,26 +1,28 @@
-package com.willfp.modelenginebridge.v4
+package com.willfp.modelenginebridge.v3
 
 import com.ticxo.modelengine.api.ModelEngineAPI
 import com.willfp.modelenginebridge.BridgedActiveModel
 import com.willfp.modelenginebridge.BridgedModeledEntity
 import com.willfp.modelenginebridge.ModelEngineBridge
-import com.willfp.modelenginebridge.v4.impl.V4ActiveModel
-import com.willfp.modelenginebridge.v4.impl.V4ModeledEntity
+import com.willfp.modelenginebridge.v3.impl.ActiveModelImpl
+import com.willfp.modelenginebridge.v3.impl.ModeledEntityImpl
 import org.bukkit.entity.Entity
 import java.util.UUID
 
-class ModelEngineBridgeV4 : ModelEngineBridge {
+class ModelEnginePlatform : ModelEngineBridge {
     override fun createActiveModel(id: String): BridgedActiveModel? {
         val model = ModelEngineAPI.createActiveModel(id) ?: return null
 
-        return V4ActiveModel(id, model)
+        return ActiveModelImpl(id, model)
     }
 
     override fun createModeledEntity(entity: Entity): BridgedModeledEntity {
-        return V4ModeledEntity(ModelEngineAPI.createModeledEntity(entity))
+        return ModeledEntityImpl(ModelEngineAPI.createModeledEntity(entity))
     }
 
     override fun getModeledEntity(uuid: UUID): BridgedModeledEntity? {
-        return ModelEngineAPI.getModeledEntity(uuid)?.let { V4ModeledEntity(it) }
+        return ModelEngineAPI.getModeledEntity(uuid)?.let {
+            ModeledEntityImpl(it)
+        }
     }
 }

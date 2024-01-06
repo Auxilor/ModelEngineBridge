@@ -1,10 +1,10 @@
-package com.willfp.modelenginebridge.v3.impl
+package com.willfp.modelenginebridge.v4.impl
 
 import com.ticxo.modelengine.api.model.ModeledEntity
 import com.willfp.modelenginebridge.BridgedActiveModel
 import com.willfp.modelenginebridge.BridgedModeledEntity
 
-class V3ModeledEntity(
+class ModeledEntityImpl(
     val handle: ModeledEntity
 ) : BridgedModeledEntity {
     override var isBaseEntityVisible: Boolean
@@ -14,16 +14,16 @@ class V3ModeledEntity(
         }
 
     override val models: Map<String, BridgedActiveModel>
-        get() = handle.models.mapValues { V3ActiveModel(it.key, it.value) }
+        get() = handle.models.mapValues { ActiveModelImpl(it.key, it.value) }
 
     override fun addModel(model: BridgedActiveModel) {
-        model as V3ActiveModel
+        model as ActiveModelImpl
 
         handle.addModel(model.handle, true)
     }
 
     override fun removeModel(model: BridgedActiveModel) {
-        model as V3ActiveModel
+        model as ActiveModelImpl
 
         handle.removeModel(model.id)
     }
