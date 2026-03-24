@@ -45,13 +45,6 @@ allprojects {
     }
 
     tasks {
-        shadowJar {
-            relocate("kotlin", "com.willfp.eco.libs.kotlin")
-            relocate("kotlin.jvm", "com.willfp.eco.libs.kotlin.jvm")
-            relocate("kotlin.coroutines", "com.willfp.eco.libs.kotlin.coroutines")
-            relocate("kotlin.reflect", "com.willfp.eco.libs.kotlin.reflect")
-        }
-
         compileKotlin {
             compilerOptions {
                 jvmTarget.set(JvmTarget.JVM_21)
