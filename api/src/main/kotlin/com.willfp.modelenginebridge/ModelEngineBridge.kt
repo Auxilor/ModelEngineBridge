@@ -26,10 +26,10 @@ interface ModelEngineBridge {
             val version = plugin.description.version
 
             return if (version.startsWith("R3")) {
-                val clazz = Class.forName("com.willfp.modelenginebridge.v3.ModelEngineBridgeV3")
+                val clazz = Class.forName("com.willfp.modelenginebridge.v3.ModelEnginePlatform")
                 clazz.constructors[0].newInstance() as ModelEngineBridge
             } else if (version.startsWith("R4")) {
-                val clazz = Class.forName("com.willfp.modelenginebridge.v4.ModelEngineBridgeV4")
+                val clazz = Class.forName("com.willfp.modelenginebridge.v4.ModelEnginePlatform")
                 clazz.constructors[0].newInstance() as ModelEngineBridge
             } else {
                 throw IllegalStateException("ModelEngineBridge requires version 3 or 4 of Model Engine!")
