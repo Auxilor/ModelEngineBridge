@@ -11,7 +11,8 @@ import java.util.UUID
 
 class ModelEnginePlatform : ModelEngineBridge {
     override fun createActiveModel(id: String): BridgedActiveModel? {
-        val model = ModelEngineAPI.createActiveModel(id) ?: return null
+        val blueprint = ModelEngineAPI.getBlueprint(id) ?: return null
+        val model = ModelEngineAPI.createActiveModel(blueprint) ?: return null
 
         return ActiveModelImpl(id, model)
     }
