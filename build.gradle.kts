@@ -52,8 +52,6 @@ allprojects {
         compileJava {
             options.isDeprecation = true
             options.encoding = "UTF-8"
-
-            dependsOn(clean)
         }
 
         build {
